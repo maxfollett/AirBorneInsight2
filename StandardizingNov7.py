@@ -30,3 +30,11 @@ def clean_and_standardize_data(input_file, output_file):
 input_file = 'path_to_raw_data/isograv.xyz'
 output_file = 'path_to_cleaned_data/cleaned_data.csv'
 clean_and_standardize_data(input_file, output_file)
+
+print ('hello')
+
+
+
+
+
+
