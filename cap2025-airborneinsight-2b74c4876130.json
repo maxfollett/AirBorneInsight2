@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "cap2025-airborneinsight",
+  "private_key_id": "2b74c4876130266a65ed8eb389cce413ff9202c4",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDDm1TVZERzVEQD\novzBMmo/65TiVIRpkOk8s+Tb8VjrRCMN0CGIkGogYgIoGCxnLAG3f6yyX7ivya2t\nz59B9W61nvPALc0uOTgT/gDdVIHx/3/5o/INkMnAdHgEu14/1lNNYC5zrL9KBRT4\niwVtmFru/urhQPhbc1gEW9BT75k1AdBRNAmpBkt+I6VHgAAmHXCzrePAzDeTbLiA\n0VvmjNCyAN1twhD+q1hQHgOVnmeveTVSPsNOQDckZaYgvCFjvt0XrVlwlLMlgI59\nxVT8AdUnNN5o6ZNjeyp7wKTyLAKMNLGJE6Uts4Wej4rYoWjX3aOuWeQvB9O1ZQe/\nVDLZ4jMLAgMBAAECggEAOflvy09MemIfRnSoNRqcIxXPqsUh+afZeQRYcFe34wLu\n4MkvJyqmSbLCsN95SZrhZ2GP7c4xDujXcQx4RzRW+72AwRTSG0EaPdKqru69FNyF\nMZhFxX+ETGY4rC5cYM9FIUnAeshYabfX31JU6YaebPdg5iI7ed9V1vTfagE5h1vc\npf2917FW6ihAsiL+50VL8ey+RtTCqJ+3T/xENVpMWUjz046LhrxFkgml/AFjSvV5\nj4f4QND+j+VsYbssO5Fc7XbcWCngVtYQJYu+4xXkHN++kmmXB8dBi3XJmGOXcM5P\naYnu2lbrC4MXK1vsrvGt1tvJSJle/3SVJmg0n1oxAQKBgQD8Zp04qUvr7aosPTrZ\nQ6knV6n1zRKPv2r4MOtppd7ckT9sb9qj2OHku4z7eC8vnG6gezl6Hz9jVy6JUhxj\na7csTi2FDDHNcm3ruA1P9lTXelkNe3DVWHT1Lqhi+P1slmiWCmAst+bl5dCELDBC\nia0SwvB+Zq0zCLQ79e8x+d3jbwKBgQDGZWQoBJbBDA6gwhpUuDlpGymsUsn6hl/N\nLeaGDar6nifAv3RNPHVcnhDtDHepyHzQqXOuSXOM7772wXNGUKDiJZnZQUykvb4x\nzV1JJkxQ7wWhB+8g7K5cstmPz0FbEY6HkcRwz/oZ/v3Ut5PWc78oor6WpbxfZgA8\nCYjq2DrsJQKBgCflNF67a9O7+lUJzJ6A8mDUm3nN02xDTm4ylVNas5JbpxHF0GJr\nqrET8CHjilnVOStGrvwdqlBSfHmaMACLCyYGqW1JUyntN3C14+zKu/hfT2oxI9Gl\nLL+Ag385ah1a3Ocydqc63lVicQYjUfGCf4fipk7kfeX+Lzb3FbrpiugjAoGBAKLY\nHGKgiaFBJUycpgI+CJmWOxmABtuEqmP+tgX4eAwn/tc+DtdKtcZk093O6vXIY3Le\nc95t2dOoAeYGmXjwu22EkYh7Cc77E39LYrOlJOUVnFg16/jpbKEYCG37H1kByyzJ\n4CT9APuPioese0N+VDylgKyksz7WuYCODv08qPilAoGAUyu/n9lj/ErwSl/eHiZI\npQCfFx6N1rij08Hg35AlV1NXKXGOowgYhFWY2rT3DA6EKLvB4BDgc0/xmMTkhzo2\n6wwiQXhPdEx2x11jkz3C/+5zrHymJma/ZmbSHMLUQX98ZzvnsoBpjyBMjiInbSCg\n2GQQ6n2DTLtBQ99iv8bTfnY=\n-----END PRIVATE KEY-----\n",
+  "client_email": "service-account-capstone-2025@cap2025-airborneinsight.iam.gserviceaccount.com",
+  "client_id": "103500442433395647495",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/service-account-capstone-2025%40cap2025-airborneinsight.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
