@@ -63,6 +63,11 @@ def filter_high_density_areas(df, gridsize=30, percentile_threshold=75):
     y_min = np.min(high_density_coords[:, 1])
     y_max = np.max(high_density_coords[:, 1])
 
+    # Print the coordinates of the red rectangle (high-density region)
+    print(f"High-Density Region Coordinates:")
+    print(f"Longitude range: {x_min} , {x_max}")
+    print(f"Latitude range: {y_min} , {y_max}")
+
     return high_density_coords, x_min, x_max, y_min, y_max, hexbin
 
 # Generate Combined Plot with Hexbin and High-Density Rectangles
@@ -121,4 +126,3 @@ def preprocess_data():
 
 # Run the preprocessing
 preprocessed_data = preprocess_data()
-
