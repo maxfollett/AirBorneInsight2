@@ -65,8 +65,8 @@ def filter_high_density_areas(df, gridsize=30, percentile_threshold=75):
 
     # Print the coordinates of the red rectangle (high-density region)
     print(f"High-Density Region Coordinates:")
-    print(f"Longitude range: {x_min} , {x_max}")
     print(f"Latitude range: {y_min} , {y_max}")
+    print(f"Longitude range: {x_min} , {x_max}")
 
     return high_density_coords, x_min, x_max, y_min, y_max, hexbin
 
