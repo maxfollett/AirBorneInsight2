@@ -20,7 +20,6 @@ def load_csv_from_github():
         csv_data = response.text
         # Skip the first row (header row with irrelevant titles) and grab lat long and corrected mag 
         df = pd.read_csv(StringIO(csv_data), header=None, sep='\s+', usecols=[5, 6, 12], names=["lat", "long", "corrected_magnetic"])
-        #print(df.head())
         return df
     else:
         print(f"Failed to load data, status code: {response.status_code}")
@@ -66,11 +65,6 @@ def filter_high_density_areas(df, gridsize=30, percentile_threshold=75):
     y_min = np.min(high_density_coords[:, 1])
     y_max = np.max(high_density_coords[:, 1])
 
-    # Print the coordinates of the red rectangle (high-density region)
-    print(f"High-Density Region Coordinates:")
-    print(f"Latitude range: {y_min} , {y_max}")
-    print(f"Longitude range: {x_min} , {x_max}")
-
     return high_density_coords, x_min, x_max, y_min, y_max, hexbin
 
 # Generate Combined Plot with Hexbin and High-Density Rectangles
@@ -80,6 +74,11 @@ def generate_combined_plot(df, gridsize=30, high_density_threshold=75):
     
     # Get high-density points and their bounding box
     high_density_coords, x_min, x_max, y_min, y_max, hexbin = filter_high_density_areas(df, gridsize=gridsize, percentile_threshold=high_density_threshold)
+
+     # Print the coordinates of the red rectangle (high-density region)
+    print(f"High-Density Region Coordinates:")
+    print(f"Latitude range: {y_min} , {y_max}")
+    print(f"Longitude range: {x_min} , {x_max}")
     
     # Define the entire survey boundary
     survey_x_min = df['long'].min()
@@ -111,18 +110,22 @@ def generate_combined_plot(df, gridsize=30, high_density_threshold=75):
     plt.legend()
     plt.show()
 
-# Save cleaned data as a CSV file locally on the Desktop
-def save_to_csv(df, file_name):
+# Save cleaned data within the high-density region as a CSV file locally on the Desktop
+def save_to_csv(df, Survey_name, x_min, x_max, y_min, y_max):
+    # Filter the data to only include points within the high-density bounding box
+    df_within_rectangle = df[(df['long'] >= x_min) & (df['long'] <= x_max) & 
+                              (df['lat'] >= y_min) & (df['lat'] <= y_max)]
+    
     # Get current date for the filename
     current_date = datetime.now().strftime('%Y-%m-%d')
     desktop_path = os.path.expanduser("~/Desktop")
-    save_path = os.path.join(desktop_path, f"{os.path.splitext(Survey_name)[0]}Standardized{current_date}.csv")
+    save_path = os.path.join(desktop_path, f"{os.path.splitext(Survey_name)[0]}_HighDensity_{current_date}.csv")
     
     # Save the dataframe as a CSV
-    df.to_csv(save_path, index=False)
+    df_within_rectangle.to_csv(save_path, index=False)
     
     # Print success message
-    print(f"Successfully saved {Survey_name} to desktop as {os.path.basename(save_path)}")
+    print(f"Successfully saved {Survey_name} (high-density region) to desktop as {os.path.basename(save_path)}")
 
 # Main Data Processing Workflow
 def preprocess_data():
@@ -135,11 +138,14 @@ def preprocess_data():
     # Step 1: Remove Outliers in Latitude and Longitude
     df_cleaned = remove_outliers(df)
     
-    # Generate combined plot with hexbin and survey boundary
+    # Step 2: Filter high-density areas using the 75th percentile
+    high_density_coords, x_min, x_max, y_min, y_max, hexbin = filter_high_density_areas(df_cleaned, gridsize=30, percentile_threshold=75)
+    
+    # Step 3: Generate combined plot with hexbin and survey boundary
     generate_combined_plot(df_cleaned, gridsize=30, high_density_threshold=75)
     
-    # Save the cleaned data to CSV
-    save_to_csv(df_cleaned, file_name)
+    # Step 4: Save the cleaned data to CSV (only points within the high-density rectangle)
+    save_to_csv(df_cleaned, Survey_name, x_min, x_max, y_min, y_max)
     
     return df_cleaned
 
