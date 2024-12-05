@@ -7,18 +7,20 @@ from io import StringIO
 import os
 from datetime import datetime
 
-# Input the CSV filename
-file_name = "CedarCityCleaned.csv"
+# Inputs by user 
+file_name = "CEDAR_CITY/cedar_city_mag.xyz"
+Survey_name = "Cedar City, Utah"
 
 # Load CSV data from GitHub
 def load_csv_from_github():
-    url = f'https://github.com/maxfollett/AirBorneInsight2/raw/main/CapDatabases/Cleaned/{file_name}'
+    url = f'https://github.com/maxfollett/AirBorneInsight2/raw/main/CapDatabases/Raw/{file_name}'
     response = requests.get(url)
     
     if response.status_code == 200:
         csv_data = response.text
-        # Skip the first row (header row with irrelevant titles) and ignore the third column
-        df = pd.read_csv(StringIO(csv_data), skiprows=1, usecols=[0, 1, 3], names=["lat", "long", "corrected_magnetic"])
+        # Skip the first row (header row with irrelevant titles) and grab lat long and corrected mag 
+        df = pd.read_csv(StringIO(csv_data), header=None, sep='\s+', usecols=[5, 6, 12], names=["lat", "long", "corrected_magnetic"])
+        #print(df.head())
         return df
     else:
         print(f"Failed to load data, status code: {response.status_code}")
@@ -105,7 +107,7 @@ def generate_combined_plot(df, gridsize=30, high_density_threshold=75):
     # Add Labels and Title
     plt.xlabel('Longitude')
     plt.ylabel('Latitude')
-    plt.title(f"Survey Area with High-Density Region: {os.path.splitext(file_name)[0]}")
+    plt.title(f"Survey Area with High-Density Region: {os.path.splitext(Survey_name)[0]}")
     plt.legend()
     plt.show()
 
@@ -114,13 +116,13 @@ def save_to_csv(df, file_name):
     # Get current date for the filename
     current_date = datetime.now().strftime('%Y-%m-%d')
     desktop_path = os.path.expanduser("~/Desktop")
-    save_path = os.path.join(desktop_path, f"{os.path.splitext(file_name)[0]}Standardized{current_date}.csv")
+    save_path = os.path.join(desktop_path, f"{os.path.splitext(Survey_name)[0]}Standardized{current_date}.csv")
     
     # Save the dataframe as a CSV
     df.to_csv(save_path, index=False)
     
     # Print success message
-    print(f"Successfully saved {file_name} to desktop as {os.path.basename(save_path)}")
+    print(f"Successfully saved {Survey_name} to desktop as {os.path.basename(save_path)}")
 
 # Main Data Processing Workflow
 def preprocess_data():
