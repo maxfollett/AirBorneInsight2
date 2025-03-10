@@ -11,7 +11,7 @@ import os
 
 # Set up authentication using your service account JSON file
 SERVICE_ACCOUNT_EMAIL = "service-account-capstone-2025@cap2025-airborneinsight.iam.gserviceaccount.com"
-KEY_FILE = "/mnt/data/cap2025-airborneinsight-0312a0d58824.json"  # Path to your uploaded JSON key file
+KEY_FILE = r"C:\Users\19mlf3\Desktop\cap2025-airborneinsight-0312a0d58824.json"  # Path to your uploaded JSON key file
 
 # Authenticate and initialize Earth Engine
 credentials = ee.ServiceAccountCredentials(SERVICE_ACCOUNT_EMAIL, KEY_FILE)
