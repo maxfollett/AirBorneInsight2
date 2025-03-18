@@ -8,8 +8,8 @@ from io import StringIO  # For handling in-memory text streams
 import os  # For file operations
 
 # Define the file name and survey name
-file_name = "richfield_mag.xyz"
-Survey_name = "Richfield, Utah"
+file_name = "marysvale_detail_mag.xyz"
+Survey_name = "Marysvale, Utah"
 output_folder = os.path.expanduser("~/Desktop/magnetic_txt_files")
 os.makedirs(output_folder, exist_ok=True)
 
@@ -20,7 +20,7 @@ def load_csv_from_github():
     
     if response.status_code == 200:
         csv_data = response.text
-        df = pd.read_csv(StringIO(csv_data), header=None, sep='\\s+', usecols=[5, 6, 12], 
+        df = pd.read_csv(StringIO(csv_data), header=None, sep='\\s+', usecols=[5, 6, 9], 
                          names=["lat", "long", "corrected_magnetic"])
         return df
     else:
