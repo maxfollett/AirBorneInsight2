@@ -39,17 +39,20 @@ def remove_outliers(df):
     return df_cleaned
 
 # Function to interpolate and extrapolate missing magnetic data
-def perform_interpolation_with_extrapolation(df, grid_size=1114):
-    grid_x, grid_y = np.mgrid[df['long'].min():df['long'].max():grid_size*1j,
-                               df['lat'].min():df['lat'].max():grid_size*1j]
+def perform_interpolation_with_extrapolation(df, grid_size=(2116,1486)):
+    rows, cols = grid_size
+    grid_x, grid_y = np.mgrid[
+        df['long'].min():df['long'].max():cols*1j,
+        df['lat'].min():df['lat'].max():rows*1j
+    ]
     points = np.column_stack((df['long'], df['lat']))
     values = df['corrected_magnetic'].values
-    
+
     grid_z = interpolate.griddata(points, values, (grid_x, grid_y), method='linear')
-    
+
     nan_mask = np.isnan(grid_z)
     grid_z[nan_mask] = interpolate.griddata(points, values, (grid_x[nan_mask], grid_y[nan_mask]), method='nearest')
-    
+
     return grid_x, grid_y, grid_z
 
 # Function to save data as .txt file

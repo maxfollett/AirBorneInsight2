@@ -8,8 +8,8 @@ import os
 from datetime import datetime
 
 # Inputs by user 
-file_name = "richfield_mag.xyz"
-Survey_name = "Richfield, Utah"
+file_name = "marysvale_detail_mag.xyz"
+Survey_name = "Marysvale, Utah"
 
 # Load CSV data from GitHub
 def load_csv_from_github():
@@ -19,7 +19,7 @@ def load_csv_from_github():
     if response.status_code == 200:
         csv_data = response.text
         # Skip the first row (header row with irrelevant titles) and grab lat long and corrected mag 
-        df = pd.read_csv(StringIO(csv_data), header=None, sep='\s+', usecols=[5, 6, 12], names=["lat", "long", "corrected_magnetic"])
+        df = pd.read_csv(StringIO(csv_data), header=None, sep='\s+', usecols=[5, 6, 9], names=["lat", "long", "corrected_magnetic"])
         return df
     else:
         print(f"Failed to load data, status code: {response.status_code}")
